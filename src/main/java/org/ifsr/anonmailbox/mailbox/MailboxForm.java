@@ -6,5 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class MailboxForm {
+        private String email;
         private String message;
 }

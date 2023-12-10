@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"
+          href="../static/css/style.css" type="text/css"/>
 </head>
 <body>
-<h1 th:text="#{mailbox.title}">Mailbox</h1>
-<form th:action="@{/mailbox}" th:method="post" th:object="${mailboxForm}">
-    <textarea name="message" th:placeholder="#{mailbox.messageToFSR}" th:field="*{message}"></textarea>
-    <button type="submit">Send</button>
-</form>
+<div class="mailbox-form">
+    <h1 th:text="#{mailbox.title}">Mailbox</h1>
+    <form th:action="@{/mailbox}" th:method="post" th:object="${mailboxForm}">
+        <input name="email" type="email" th:placeholder="#{mailbox.optionalEmail}" th:field="*{email}">
+        <textarea name="message" th:placeholder="#{mailbox.messageToFSR}" th:field="*{message}"></textarea>
+        <input type="submit" th:value="#{mailbox.submit}">
+    </form>
+</div>
 
 </body>
 </html>
