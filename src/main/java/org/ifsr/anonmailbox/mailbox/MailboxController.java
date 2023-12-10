@@ -1,14 +1,16 @@
 package org.ifsr.anonmailbox.mailbox;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MailboxController {
-
-    public MailboxController() {
-    }
+    @Value("${spring.mail.password}")
+    String password;
+    @Value("${spring.mail.username}")
+    String username;
 
     @GetMapping("/")
     public String index() {
@@ -22,7 +24,8 @@ public class MailboxController {
 
     @PostMapping("/mailbox")
     public String mailboxPost(MailboxForm form) {
-        System.out.println(form.getMessage());
+        MailLogic logic = new MailLogic(username, password);
+        logic.sendSimpleMessage(form.getEmail(), form.getMessage());
         return "success";
     }
 
