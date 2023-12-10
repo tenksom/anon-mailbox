@@ -22,8 +22,6 @@ public class MailLogic {
 
     public MailLogic(@Value("${spring.mail.username}") String username, @Value("${spring.mail.password}") String password) {
         this.username = username;
-        System.out.println(password);
-        System.out.println(username);
         this.sender = new JavaMailSenderImpl();
         sender.setHost("mail.ifsr.de");
         sender.setPort(587);
@@ -46,11 +44,7 @@ public class MailLogic {
 
     private String messageBuilder(String email, String text) {
         String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        if (email != null) {
-            return "New Message in Anon Mailbox at" + time + "\n From: " + email + "\n Message: \n" + text;
-        }
-        else {
-            return "New Message in Anon Mailbox at" + time + "\n Message: \n" + text;
-        }
+        return "New Message in Anon Mailbox at" + time + "\nFrom: " + email + "\nMessage: \n" + text;
     }
+
 }
