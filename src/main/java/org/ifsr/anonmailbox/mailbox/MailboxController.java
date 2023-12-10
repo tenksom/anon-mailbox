@@ -1,6 +1,7 @@
 package org.ifsr.anonmailbox.mailbox;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -16,12 +17,13 @@ public class MailboxController {
     }
 
     @GetMapping("/mailbox")
-    public String mailbox() {
+    public String mailbox(MailboxForm form) {
         return "mailbox";
     }
 
     @PostMapping("/mailbox")
-    public String mailboxPost(MailboxForm mailboxForm) {
+    public String mailboxPost(MailboxForm form) {
+        System.out.println(form.getMessage());
         return "mailbox";
     }
 

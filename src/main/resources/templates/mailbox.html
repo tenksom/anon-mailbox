@@ -5,11 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<h1 th:text="${mailbox.title}">Mailbox</h1>
-<form th:action="@{/mailbox}" method="post" th:object="${mailboxForm}">
-    <input type="text" name="to" placeholder="To">
-    <input type="text" name="subject" placeholder="Subject">
-    <textarea name="text" placeholder="Text"></textarea>
+<h1 th:text="#{mailbox.title}">Mailbox</h1>
+<form th:action="@{/mailbox}" th:method="post" th:object="${mailboxForm}">
+    <textarea name="message" th:placeholder="#{mailbox.messageToFSR}" th:field="*{message}"></textarea>
     <button type="submit">Send</button>
 </form>
 
